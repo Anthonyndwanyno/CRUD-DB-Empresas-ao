@@ -1,0 +1,38 @@
+{% extends 'base.html' %}
+{% block content%}
+<div class="card">
+    <h5 class="card-header">{{empresa_record.nome}} </h5>
+    <div class="card-body">
+        <p class="card-text">
+           <strong>NIF: </strong> {{empresa_record.nif}}
+        </p>
+        <p class="card-text">
+            <strong>Telefone: </strong>{{empresa_record.telefone}}
+        </p>
+        <p class="card-text">
+            <strong>Email: </strong>{{empresa_record.email}}
+        </p>
+        <p class="card-text">
+            <strong>Website: </strong>{{customer_record.website}}
+        </p>
+        <p class="card-text">
+            <strong>Descrição: </strong>{{empresa_record.descricao}}
+        </p>
+        <p class="card-text">
+            <strong>Sector De Actividade: </strong>{{empresa_record.id_sector}}
+        </p>
+        <p class="card-text">
+            <strong>Endereço: </strong>{{empresa_record.id_endereco}}
+        </p>
+        <p class="card-text">
+            <strong>Data de Registo: </strong>{{empresa_record.data_criacao}}
+        </p>      
+    </div>
+  </div>
+  <br>
+  <a href="{% url 'home'%} " class="btn btn-secondary">Voltar</a>
+  <a href="{% url 'update_record' empresa_record.nif %}" class="btn btn-secondary">Actualizar</a>
+  <a href="{% url 'delete_record' empresa_record.nif %}" class="btn btn-danger">Apagar</a>
+
+  
+{% endblock %}

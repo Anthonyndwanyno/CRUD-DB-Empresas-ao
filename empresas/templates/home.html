@@ -1,0 +1,54 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    {% if user.is_authenticated %}
+      
+         {% if empresas %}
+         <table class="table table-striped table-hover table-bordered">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">Nome</th>
+              <th scope="col">NIF</th>
+              <th scope="col">Telefone</th>
+              <th scope="col">Email</th>
+              <th scope="col">Website</th>
+              <th scope="col">Endereço</th>
+              <th scope="col">Sector</th>
+              <th scope="col">Data de Registo</th>
+            </tr>
+          </thead>
+          <tbody>
+            {%for empresa in empresas %}
+            <tr>
+                <td><a href="{% url 'empresa_record' empresa.nif %}">{{empresa.nome}}</a></td>
+                <td><a href="{% url 'empresa_record' empresa.nif %}">{{empresa.nif}}</a></td>
+                <td>{{empresa.telefone}}</td>
+                <td>{{empresa.email}}</td>
+                <td>{{empresa.website}}</td>
+                <td>{{empresa.id_endereco}}</td>
+                <td>{{empresa.id_sector}}</td>
+                <td>{{empresa.data_criacao}}</td>
+                
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+            
+         {%endif%}
+    {% else %}
+    
+    <div class="col-md-6 offset-3"></div>
+      <h1>Login</h1>
+      <form method="POST" action="{% url 'home' %}">
+          {% csrf_token %}
+              <div class="mb-3">
+                <input type="text" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Nome do usuario" name="username" required>
+              </div><br>
+              <div class="mb-3">
+                <input type="password" class="form-control" id="exampleInputPassword1" placeholder=" Password" required name="password">
+              </div>
+              <button type="submit" class="btn btn-secondary">Entrar</button>
+        </form>
+      </div>
+{% endif %}
+{% endblock %}    
